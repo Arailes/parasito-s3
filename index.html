@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meu Portal de Estudos</title>
+    <style>
+        :root {
+            --primary: #4a90e2;   /* Azul para Guia */
+            --secondary: #50e3c2; /* Verde para Questionário */
+            --accent: #f5a623;    /* Laranja para Fixação */
+            --bg: #f0f2f5;
+            --text: #2c3e50;
+            --card-bg: #ffffff;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            margin: 0;
+            padding: 20px;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 50px;
+            padding: 0 15px;
+        }
+
+        h1 {
+            margin: 0;
+            font-size: 2.5rem;
+            color: var(--primary);
+        }
+
+        p.subtitle {
+            margin-top: 10px;
+            color: #666;
+            font-size: 1.1rem;
+        }
+
+        /* GRID RESPONSIVO */
+        .container {
+            display: grid;
+            /* Cria colunas automaticamente: 
+               - Desktop: 3 colunas
+               - Tablet: 2 colunas
+               - Celular: 1 coluna */
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            width: 100%;
+            max-width: 1100px;
+        }
+
+        /* CARTÕES */
+        .card {
+            background: var(--card-bg);
+            border-radius: 16px;
+            padding: 40px 30px;
+            text-align: center;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border-top: 6px solid #ccc;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            height: 100%; /* Garante altura igual */
+        }
+
+        .card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+        }
+
+        /* Cores Específicas */
+        .card.guia { border-top-color: var(--primary); }
+        .card.fixacao { border-top-color: var(--accent); }
+        .card.quest { border-top-color: var(--secondary); }
+
+        .icon {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        h2 { font-size: 1.5rem; margin: 0 0 10px 0; }
+        p.desc { color: #7f8c8d; font-size: 0.95rem; margin-bottom: 30px; line-height: 1.5; }
+
+        /* BOTÕES */
+        button {
+            width: 100%;
+            padding: 15px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 700;
+            color: white;
+            cursor: pointer;
+            transition: opacity 0.2s, transform 0.1s;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        button:hover { opacity: 0.9; }
+        button:active { transform: scale(0.98); }
+
+        .btn-guia { background-color: var(--primary); }
+        .btn-fixacao { background-color: var(--accent); }
+        .btn-quest { background-color: var(--secondary); color: #fff; text-shadow: 0 1px 1px rgba(0,0,0,0.1); }
+
+        /* MEDIA QUERIES (Ajustes finos) */
+        @media (max-width: 768px) {
+            header { margin-bottom: 30px; }
+            h1 { font-size: 2rem; }
+            .container { gap: 20px; }
+            .card { padding: 30px 20px; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Portal de Estudos</h1>
+        <p class="subtitle">Guia Parasitológico by Arailes Feitosa IDOMED Quixada-CE T6A</p>
+    </header>
+
+    <div class="container">
+        
+        <div class="card guia">
+            <div>
+                <span class="icon">📚</span>
+                <h2>Memorex</h2>
+                <p class="desc">Acesse o material.</p>
+            </div>
+            <button class="btn-guia" onclick="acessar('guia')">Ler Material</button>
+        </div>
+
+        <div class="card fixacao">
+            <div>
+                <span class="icon">🧠</span>
+                <h2>Fixação</h2>
+                <p class="desc">Revise quiz interativo para fixar.</p>
+            </div>
+            <button class="btn-fixacao" onclick="acessar('fixacao')">Praticar Agora</button>
+        </div>
+
+        <div class="card quest">
+            <div>
+                <span class="icon">📝</span>
+                <h2>Questionário</h2>
+                <p class="desc">Teste seus conhecimentos com simulados estilo ENAMED casos clinicos.</p>
+            </div>
+            <button class="btn-quest" onclick="acessar('quest')">Iniciar Teste</button>
+        </div>
+
+    </div>
+
+    <script>
+        // ======================================================
+        // CONFIGURAÇÃO DE LINKS (EDITAR AQUI)
+        // ======================================================
+        // Coloque seus links entre as aspas abaixo.
+        
+        const linksDeEstudo = {
+            guia: "https://parasito-s3pr2.onrender.com/", // Ex: Link do seu PDF ou Resumo
+            fixacao: "https://gemini.google.com/share/8a74beb2b3b7", // Ex: Link do seu Deck do Anki
+            quest: "https://gemini.google.com/share/f598100991ac" // Ex: Link do Google Forms
+        };
+
+        // ======================================================
+        // LÓGICA (NÃO PRECISA MEXER)
+        // ======================================================
+        
+        function acessar(tipo) {
+            const url = linksDeEstudo[tipo];
+            
+            if(url && url.length > 5) {
+                window.open(url, '_blank');
+            } else {
+                alert("Link não configurado! Edite o arquivo HTML e insira o link no script.");
+            }
+        }
+    </script>
+
+</body>
+</html>
